@@ -1,0 +1,80 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-evenly center">
+    <mat-select placeholder="Sort By Name" [formControl]="sortBy" style="width: 250px;box-sizing: border-box;color:black;padding: .5rem .5rem;background: #fff;font-size: 1rem;border-radius: 5px;">
+      <mat-option *ngFor="let item of sortByList" (click)="SortBy(item)" [value]="item.value">{{item.viewValue | titlecase}}</mat-option>
+    </mat-select>
+    <div class="search-bar" style="border-radius: 5px;width: 400px;">
+      <form class="search-form" novalidate>
+        <mat-icon>search</mat-icon>
+        <input [formControl]="searchCtrl" id="searchInput" placeholder="Search here" type=search >
+      </form>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+<br>
+
+<div style="padding: 1rem 15rem 1rem 15rem;">
+  <h3>Total Results : {{totalValue ? totalValue : 0}}</h3>
+  <br>
+  <div style="height: 470px;overflow: auto;">
+    <mat-list *ngFor="let item of gitUsers | orderByPipe : sortElementBy">
+      <mat-card>
+        <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="10px" style="height: 110px;">
+          <mat-icon fxFlex>
+            <img src="{{item.avatar_url}}" style="width: 80px;height: 80px;border-radius: 48%;">
+          </mat-icon>
+          <mat-list-item fxFlex=85>
+            <h4 mat-line>
+              <b>User Name :</b>{{item.login}}
+            </h4>
+            <h4 mat-line>
+              <b>Profile Url :</b> {{item.html_url}}
+            </h4>
+          </mat-list-item>
+        </div>
+        <mat-accordion displayMode="flat">
+          <mat-expansion-panel hideToggle=true>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <b style="margin-top: 12px;">Git Repository Details</b>
+              </mat-panel-title>
+              <mat-panel-description>
+              </mat-panel-description>
+              <button (click)="viewDetails(item)" mat-button color="primary" style="border:1px solid #1A8FF0; border-radius: 7px;" >{{item.mode =='C' ? 'Details' : 'Collapse' }}</button>
+            </mat-expansion-panel-header>
+            <mat-list *ngFor="let item of repos">
+              <hr>
+                <div style="display:flex; height:fit-content; flex-direction:column; width:700px; text-align: center;">
+                  <div style="display:flex; flex-direction: row; justify-content: space-between;">
+                <h4 mat-line>
+                  Name :
+                  {{item.name}}
+                </h4>
+                <h4 mat-line>
+                 Language : {{item.language !=null ? item.language :"No language defined" }}
+                </h4>
+              </div>
+                <h4 mat-line>
+                  <b>Git Repository Url :</b> {{item.html_url}}
+                </h4>
+                <div style="display:flex; flex-direction: row; justify-content: space-between;">
+                <h4 mat-line>
+                  <b> Fork : </b>{{item.forks_count}}
+                </h4>
+                <h4 mat-line>
+                  <b> Watchers :</b> {{item.watchers}}
+                </h4>
+                <h4 mat-line>
+                  <b> Open Issues :</b> {{item.open_issues_count}}
+                </h4>
+                </div>
+              </div>
+            </mat-list>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </mat-card>
+    </mat-list>
+  </div>
+</div>
+<mat-paginator #paginator style="padding: 0rem 15rem 0rem 15rem;" (click)="nextPage(paginator)" [length]="totalValue" [pageSize]="50">
+</mat-paginator>

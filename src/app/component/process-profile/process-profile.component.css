@@ -1,0 +1,39 @@
+
+mat-toolbar .search-bar .search-form input {
+    font-size: 1rem;
+    padding: .92rem .72rem;
+    z-index: 3;
+    cursor: text;
+    text-indent: 30px;
+    border: none;
+    background: transparent;
+    width: 100%;
+    outline: 0;
+}
+mat-toolbar .search-bar .search-form {
+    background: #fff;
+    position: relative;
+    border-radius: 1px;
+    margin-right: 1rem;
+    display: block;
+    max-width: 800px;
+}
+
+mat-toolbar .search-bar .search-form .material-icons {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    margin-top: -12px;
+    color: rgba(0,0,0,.85);
+}
+.mat-toolbar {
+    padding : 0 10px;
+};
+
+h4{
+    font-family: 'Lato', sans-serif;
+    font-weight: 200;
+}
+div{
+    position: relative;
+}

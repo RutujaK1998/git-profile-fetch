@@ -1,0 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+html,body {
+    height:100% !important;
+    width:100% !important; 
+    margin:0px; 
+    padding:0px;
+}
+body{
+    font-family: Lato;
+    font-weight: 400;
+}
+h4 { 
+    font-family: Lato;
+    font-weight: 400; 
+}
+
+
+mat-card{
+    font-family: Lato;
+    font-style: normal       
+}
