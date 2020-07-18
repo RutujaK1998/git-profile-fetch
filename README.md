@@ -1,4 +1,7 @@
-# FrontAss
+# Git Profile Fetching
+
+In this project, I have done fetching of profiles with the help of git open APIs. 
+I have build cards which will render depending on what we search.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.7.
 
